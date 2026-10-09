@@ -58,6 +58,7 @@ export default function App() {
   const analyzeLocally = () => {
     setIsAnalyzing(true);
     setTimeout(() => {
+      // eslint-disable-next-line no-control-regex
       const sanitized = chatText.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '');
       const lines = sanitized.split('\n').filter(line => line.trim().length > 0);
       
