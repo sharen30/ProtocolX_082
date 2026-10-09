@@ -14,7 +14,7 @@ describe('CatchUp AI Standalone Application', () => {
     const runBtn = screen.getByRole('button', { name: /run analysis/i });
     fireEvent.click(runBtn);
 
-    // findByText automatically waits for async state changes / timers
+    // findByText waits for async state changes / timers
     expect(await screen.findByText(/Lines Analyzed/i)).toBeInTheDocument();
     expect(screen.getByText(/Urgent Messages/i)).toBeInTheDocument();
     expect(screen.getByText(/Decisions Made/i)).toBeInTheDocument();
@@ -32,12 +32,14 @@ describe('CatchUp AI Standalone Application', () => {
   test('rejects file uploads exceeding 1MB', () => {
     window.alert = jest.fn();
     render(<App />);
-    
-    const largeContent = new Array(1000002).join('a');
-    const largeFile = new File([largeContent], 'large.txt', { type: 'text/plain' });
-    const input = screen.getByLabelText(/upload transcript/i);
 
+    // Explicitly override size property so file.size > 1024 * 1024 triggers limit
+    const largeFile = new File(['a'], 'large.txt', { type: 'text/plain' });
+    Object.defineProperty(largeFile, 'size', { value: 1024 * 1024 + 1 });
+
+    const input = screen.getByLabelText(/upload transcript/i);
     fireEvent.change(input, { target: { files: [largeFile] } });
+
     expect(window.alert).toHaveBeenCalledWith("File size exceeds 1MB limit.");
   });
 });
