@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# CatchUp AI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A lightweight, privacy-first, local-first chat transcript summarizer designed to extract key decisions, action items, urgent alerts, and user mentions instantly inside your browser.
 
-## Available Scripts
+## 🌟 Key Features
 
-In the project directory, you can run:
+* **100% Local-First Processing:** Zero API calls, zero cloud dependencies, and zero data leaves your machine.
+* **$O(n)$ Linear Parsing Engine:** Rapid client-side regex evaluation across transcript datasets.
+* **Multi-Dataset Support:** Built-in scenarios (Engineering Incident, Product Launch, Client Sync) + support for custom `.txt` log uploads (< 1MB).
+* **Sanitized & Secure:** Strips non-printable control characters, prevents XSS payload execution, and enforces client-side file size restrictions.
+* **Accessible UI:** High-contrast light mode, standard ARIA roles, live regions for dynamically rendered results, and full keyboard navigation.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Architecture & Technical Performance
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* **Time Complexity:** $O(n)$ where $n$ is the total character length of the loaded transcript. Single-pass splitting and linear regex evaluation guarantee immediate results without browser thread blocking.
+* **Memory Footprint:** In-memory string manipulation within V8; total memory allocation remains well under 5 MB for standard log files.
+* **Privacy Model:** Operates entirely within client state (`React.useState`). No telemetry, no third-party scripts, and no server endpoints.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Quickstart Guide
 
-### `npm run build`
+### Prerequisites
+* Node.js v18+ 
+* npm v9+
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Local Setup & Verification
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Navigate to the active application directory:**
+   ```bash
+   cd app
